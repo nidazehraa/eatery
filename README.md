@@ -13,7 +13,7 @@ In order to run this application you need to have node/npm and bower installed i
 Clone the `eatery` repository using git:
 
 ```
-git clone https://github.com/angular/angular-seed.git
+git clone https://github.com/nidazehraa/eatery.git
 cd eatery
 ```
 
