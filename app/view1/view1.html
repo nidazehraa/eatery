@@ -1,0 +1,90 @@
+<div ng-app="myApp.view1" ng-controller="View1Ctrl">
+  <div class="center">
+    <button type="button" class="btn btn-primary" ng-click="findEateries()">Find Eatries</button>
+  </div>
+  <div class="eatry-details" id="anime">
+    <a href="" ng-click="hideSlide()" style="color: #555"><span class="glyphicon glyphicon-remove closer-slide"></span></a>
+    <div class="row">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <a type="button" class="btn btn-success"  href= {{place.url}} target="_blank" style="float: right;">Add Review through Google</a>
+          <h3 class="panel-title">{{place.name}}</h3>
+          <span ng-show=place.formatted_phone_number>{{place.formatted_phone_number}}</span>
+          <span>Rating: {{place.rating}}</span>
+        </div>
+        <div class="panel-body">
+
+          <p>{{place.formatted_address}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="panel panel-primary" style="overflow-y:scroll;height: 500px">
+        <!-- Default panel contents -->
+        <div class="panel-heading"><span class="panel-title"><strong>Reviews</strong></span>
+          <span style="float: right;">
+            <a type="button" class="btn btn-default btn-xs" ng-click="open()">
+              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            </a>
+          </span>
+        </div>
+        <!-- List group -->
+        <ul class="list-group" ng-repeat="review in place.reviews">
+          <a href="#" class="list-group-item">
+            <span style="float: right;" class="list-group-item-heading">
+              <star-rating ng-model="review.rating" readonly="rating.isReadonly" max="5" on-rating-select="rating.rateFunction(rating)">
+              </star-rating>
+            </span>
+            <h5 class="list-group-item-heading">{{review.author_name}}</h5>
+            <hr>
+            <p class="list-group-item-text">{{review.text}}</p>
+        </a>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div id="mapdiv">
+        <div id="map">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <!--<div id="reviewdiv">
+      <button id="toggle" ng-click="addReviews()">AddReviews</button>
+        <ul>
+            <li>{{place.name}}</li>
+            <li>{{place.website}}</li>
+            <li>{{place.formatted_phone_number}}</li>
+        </ul>
+    </div>-->
+  </div>
+<div class="modal-demo">
+    <script type="text/ng-template" id="myModalContent.html">
+
+        <div class="modal-header">
+            <h3>Add Review</h3>
+        </div>
+        <form ng-submit="submit()">
+          <div class="modal-body">
+            <label>Full Name</label>
+            <input type="text" class="form-control" ng-model="user.name" placeholder="Full name" required="required" />
+            <label>Email</label>
+            <input type="email" class="form-control" ng-model="user.email" placeholder="Email Address" required="required" />
+            <label>Rating</label>
+            <input type="number" class="form-control" ng-model="user.rating" max=5 min=1  placeholder="Rate from 1 to 5" required="required" />
+            <label>Review</label>
+            <textarea rows="4" cols="50" class="form-control" ng-model="user.review" placeholder="how did you feel about the place?">
+            </textarea>
+          </div>
+          <div class="modal-footer">
+              <button class="btn btn-warning" ng-click="cancel()" type="button">Cancel</button>
+              <button type="submit" class="btn btn-success" type="button">Submit Review</button>
+          </div>
+        </form>
+    </script>
+</div>
+</div>
